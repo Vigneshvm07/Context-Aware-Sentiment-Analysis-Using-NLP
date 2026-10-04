@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContextAI | Sentiment Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <a href="#home" class="logo">Context<span>AI</span></a>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#analyzer">Analyzer</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#about">About</a>
+        </nav>
+        <a href="#analyzer" class="nav-btn">Get Started ↗</a>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="eyebrow"><span class="pulse"></span> NLP-POWERED TEXT INTELLIGENCE</div>
+                <h1>Understand the meaning <span>behind every word.</span></h1>
+                <p>
+                    Analyze emotions and opinions with context-aware
+                    sentiment analysis. Discover what people really mean
+                    through intelligent text processing.
+                </p>
+                <div class="hero-actions">
+                    <a href="#analyzer" class="primary-btn">Start Analyzing →</a>
+                    <a href="#about" class="secondary-btn">Explore Features</a>
+                </div>
+                <div class="hero-trust">
+                    <span>✦ Context detection</span>
+                    <span>✦ Emotion recognition</span>
+                    <span>✦ Real-time results</span>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="visual-glow"></div>
+                <div class="floating-card card-top">
+                    <span class="mini-icon">🧠</span>
+                    <div>
+                        <strong>Context detected</strong>
+                        <small>Negation identified</small>
+                    </div>
+                    <span class="check">✓</span>
+                </div>
+                <div class="brain-circle">
+                    <div class="brain-inner">✧</div>
+                    <div class="orbit orbit-one"></div>
+                    <div class="orbit orbit-two"></div>
+                    <span class="orbit-dot dot-one"></span>
+                    <span class="orbit-dot dot-two"></span>
+                </div>
+                <div class="floating-card card-bottom">
+                    <div class="sentiment-dot"></div>
+                    <div>
+                        <small>Sentiment result</small>
+                        <strong>Positive</strong>
+                    </div>
+                    <span class="result-percent">92%</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="analyzer section" id="analyzer">
+            <div class="section-heading">
+                <span class="section-label">INTELLIGENT ANALYZER</span>
+                <h2>Analyze text with context</h2>
+                <p>Enter a sentence and explore its sentiment, emotions and context.</p>
+            </div>
+
+            <div class="analyzer-grid">
+                <div class="panel input-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <span class="panel-icon">✎</span>
+                            <strong>Text Input</strong>
+                        </div>
+                        <span class="live-label">● READY</span>
+                    </div>
+
+                    <label for="textInput">Enter your text</label>
+                    <textarea id="textInput" maxlength="2000"
+                        placeholder="Example: I thought the movie would be terrible, but it was surprisingly amazing!"></textarea>
+
+                    <div class="textarea-footer">
+                        <span id="charCount">0 / 2000</span>
+                        <button id="clearBtn" class="text-btn">Clear text</button>
+                    </div>
+
+                    <div class="examples">
+                        <span>Try an example:</span>
+                        <button class="example-btn" data-example="I thought this phone was bad, but its camera is absolutely amazing!">Mixed opinion</button>
+                        <button class="example-btn" data-example="I am not happy with the service. The delivery was very slow.">Negative</button>
+                        <button class="example-btn" data-example="The package arrived today at 10 AM.">Neutral</button>
+                    </div>
+
+                    <button id="analyzeBtn" class="analyze-btn">
+                        ✦ Analyze Sentiment
+                    </button>
+                </div>
+
+                <div class="panel result-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <span class="panel-icon">◈</span>
+                            <strong>Analysis Result</strong>
+                        </div>
+                        <span id="resultStatus" class="result-status">WAITING</span>
+                    </div>
+
+                    <div class="result-main">
+                        <div id="resultEmoji" class="result-emoji">✧</div>
+                        <h3 id="sentimentResult">Awaiting analysis</h3>
+                        <p id="resultMessage">Your sentiment insights will appear here.</p>
+                    </div>
+
+                    <div class="confidence-section">
+                        <div class="confidence-heading">
+                            <span>Confidence indicator</span>
+                            <strong id="confidenceValue">0%</strong>
+                        </div>
+                        <div class="progress-track">
+                            <div id="confidenceBar"></div>
+                        </div>
+                    </div>
+
+                    <div class="score-list">
+                        <div class="score-row">
+                            <span><i class="score-dot positive-dot"></i>Positive</span>
+                            <strong id="positiveScore">0%</strong>
+                        </div>
+                        <div class="score-row">
+                            <span><i class="score-dot neutral-dot"></i>Neutral</span>
+                            <strong id="neutralScore">0%</strong>
+                        </div>
+                        <div class="score-row">
+                            <span><i class="score-dot negative-dot"></i>Negative</span>
+                            <strong id="negativeScore">0%</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insights-grid">
+                <div class="panel insight-panel">
+                    <div class="panel-heading">
+                        <strong>Context Insights</strong>
+                        <span class="insight-symbol">⌘</span>
+                    </div>
+                    <div id="contextInsights" class="insight-content">
+                        <p>Contextual observations will appear after analysis.</p>
+                    </div>
+                </div>
+
+                <div class="panel insight-panel">
+                    <div class="panel-heading">
+                        <strong>Detected Keywords</strong>
+                        <span class="insight-symbol">⌕</span>
+                    </div>
+                    <div id="keywordInsights" class="keyword-list">
+                        <p>Sentiment keywords will appear here.</p>
+                    </div>
+                </div>
+
+                <div class="panel insight-panel">
+                    <div class="panel-heading">
+                        <strong>Emotion Detection</strong>
+                        <span class="insight-symbol">♡</span>
+                    </div>
+                    <div id="emotionInsights" class="emotion-list">
+                        <p>Emotional signals will appear here.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard section" id="dashboard">
+            <div class="section-heading">
+                <span class="section-label">ANALYTICS CENTER</span>
+                <h2>Sentiment overview</h2>
+                <p>Track the sentiment distribution of your analyzed text.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-icon purple">▤</span>
+                    <p>Total analyses</p>
+                    <h3 id="totalCount">0</h3>
+                    <small>Texts processed</small>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon green">☺</span>
+                    <p>Positive</p>
+                    <h3 id="positiveCount">0</h3>
+                    <small>Positive results</small>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon gray">◉</span>
+                    <p>Neutral</p>
+                    <h3 id="neutralCount">0</h3>
+                    <small>Neutral results</small>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon red">☹</span>
+                    <p>Negative</p>
+                    <h3 id="negativeCount">0</h3>
+                    <small>Negative results</small>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="panel chart-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <strong>Sentiment distribution</strong>
+                            <p>Overall analysis breakdown</p>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="sentimentChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="panel history-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <strong>Recent analyses</strong>
+                            <p>Your latest text results</p>
+                        </div>
+                        <button id="clearHistory" class="text-btn">Clear all</button>
+                    </div>
+                    <div id="historyList" class="history-list">
+                        <p class="empty-state">No analyses yet. Try entering some text.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about section" id="about">
+            <div class="section-heading">
+                <span class="section-label">ABOUT THE PROJECT</span>
+                <h2>More than just positive or negative</h2>
+                <p>Explore the concepts behind context-aware sentiment analysis.</p>
+            </div>
+
+            <div class="features-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">⌘</div>
+                    <h3>Context Understanding</h3>
+                    <p>Recognizes contextual clues such as negation, contrast and intensifying words.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">♡</div>
+                    <h3>Emotion Recognition</h3>
+                    <p>Identifies emotional signals such as happiness, sadness, anger and excitement.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">◈</div>
+                    <h3>Sentiment Classification</h3>
+                    <p>Classifies text into positive, negative or neutral sentiment categories.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">▥</div>
+                    <h3>Visual Analytics</h3>
+                    <p>Displays sentiment statistics and a visual breakdown of analyzed text.</p>
+                </article>
+            </div>
+
+            <div class="workflow">
+                <h3>How the system works</h3>
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <span>01</span>
+                        <strong>Text Input</strong>
+                        <small>Enter a sentence</small>
+                    </div>
+                    <i>→</i>
+                    <div class="workflow-step">
+                        <span>02</span>
+                        <strong>Preprocessing</strong>
+                        <small>Clean and tokenize</small>
+                    </div>
+                    <i>→</i>
+                    <div class="workflow-step">
+                        <span>03</span>
+                        <strong>Context Analysis</strong>
+                        <small>Detect contextual clues</small>
+                    </div>
+                    <i>→</i>
+                    <div class="workflow-step">
+                        <span>04</span>
+                        <strong>Classification</strong>
+                        <small>Display sentiment</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a href="#home" class="logo">Context<span>AI</span></a>
+        <p>Context-Aware Sentiment Analysis Using NLP</p>
+        <small>Academic TSA Project · 2026</small>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
